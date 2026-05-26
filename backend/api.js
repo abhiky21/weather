@@ -8,13 +8,17 @@ export async function getWeather(city) {
     );
     const result = await res.json();
 
-    if (result.cod == 200 && result.cod === "200") {
+    if (
+      result.cod == 200 &&
+      result.cod === "200" &&
+      city.toLowerCase() === result.city.name.toLowerCase()
+    ) {
       return result;
     } else {
       throw new Error("Weather not found.");
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    throw new Error(error.message);
   }
 }
 

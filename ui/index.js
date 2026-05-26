@@ -32,10 +32,6 @@ async function fetchWeather(city) {
 
     const result = await res.json();
 
-    // const val = result.list["2026-05-25"];
-
-    // console.log(val);
-
     const newDate = new Date();
 
     const DateForm =
@@ -50,13 +46,11 @@ async function fetchWeather(city) {
 
     addingData(todayTemp, result);
 
-    // addingData(result);
-
     Object.values(result.list).map((dat) => {
       forecastData(Object.values(result.list), result);
     });
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 }
 
@@ -101,14 +95,6 @@ function addingData(data, result) {
     "-" +
     newDate.getDate();
 
-  console.log(DateForm);
-
-  // const todayTemp = result.list[DateForm];
-
-  // console.log(DateForm);
-
-  // console.log(city);
-
   const parents = document.querySelectorAll(
     ".temperature, #temp-det-f, #temp-det-s",
   );
@@ -117,12 +103,14 @@ function addingData(data, result) {
     parent.innerHTML = "";
   });
 
-  selectCity.innerText = result.city.name + ", " + country[result.city.country];
+  if (result.city.name == country[result.city.country]) {
+    selectCity.innerText = result.city.name;
+  } else {
+    selectCity.innerText =
+      result.city.name + ", " + country[result.city.country];
+  }
 
-  console.log(result);
-
-  let h1, h3f, h3s, h3t, dayt;
-  let htn;
+  let h1, h3f, h3s, h3t, dayt, htn;
 
   tempHoours.innerHTML = "";
 
@@ -144,7 +132,6 @@ function addingData(data, result) {
         timeFormate(now).split("-")[1] &&
       items.dt_txt.split(" ")[0] == DateForm
     ) {
-      console.log("true");
       isToday = true;
       isSunrise = true;
     }
@@ -162,10 +149,6 @@ function addingData(data, result) {
     tempHoours.innerHTML += htn;
 
     if (timeFormate(items.dt_txt) <= timeFormate(now)) {
-      console.log("Do batter");
-      // console.log(timeFormate(items.dt_txt));
-      // Boolean = true;
-
       h1 = Object.assign(document.createElement("h1"), {
         textContent: parseInt(items.main.temp) + "°C",
       });
@@ -254,13 +237,3 @@ function todayDate() {
 }
 
 todayDate();
-
-// console.log(timeFormate("2026-05-25 06:00:00"));
-
-// function timeFormate(ti) {
-//   const date = new Date(ti * 1000);
-//   const timeDate = date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
-//   const [dat, time] = timeDate.split(", ");
-//   // console.log(dat + " & " + time);
-//   return { dat, time };
-// }

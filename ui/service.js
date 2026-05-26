@@ -29,8 +29,6 @@ function timeFormate(ti) {
 
   const ho = time.toLocaleTimeString("en-HI");
 
-  //   console.log(hour);
-
   const h = parseInt(ho.split(":")[0]) + " " + ho.split(" ")[1] + "-" + hour;
 
   return h;
