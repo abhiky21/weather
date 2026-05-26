@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather-App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header id="navbar-container">
+        <div id="heading-app">
+            <i class="fa-solid fa-cloud-sun fa-xl"></i>
+            <h3>Weather App</h3>
+            <div class="search-box">
+                <form id="form">
+                    <!-- <i class="fa-light fa-magnifying-glass-location fa-lg" style="color: rgb(74, 74, 72);"></i> -->
+                    <input type="text" name="search" value="delhi" placeholder="Search for location" id="search-city">
+
+                </form>
+            </div>
+        </div>
+        <nav class="site-nav" id="site-nav">
+            <a href="#" target="_blank">Home</a>
+            <i class="fa-solid fa-gear fa-xl"></i>
+            </div>
+    </header>
+
+    <!-- location Name -->
+    <main class="weather-main">
+        <div class="nav-main">
+            <h2 class="city"></h2>
+            <div class="nav-date">
+            </div>
+        </div>
+
+        <!-- Temperature Details -->
+        <section class="temp-card">
+            <div id="temp-submain" class="temp-sub">
+                <div class="temp-submain"></div>
+                <div class="temperature">
+                </div>
+                <div class="temperature-details">
+                    <div id="temp-det-f" class="temp-det">
+                        <!-- <h3>Feels Like: 17°C</h3>
+                        <h3>humidity: 68%</h3>
+                        <h3>Wind: 14 km/h SW</h3> -->
+                    </div>
+                    <div id="temp-det-s" class="temp-det">
+                        <!-- <h3>UV Index: 4</h3>
+                        <h3>UV Index: 4</h3> -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="temp-hour" class="temp-sub">
+                <div class="temp-submain"></div>
+                <div class="temperature-hours">
+                    <h2>24-Hour Forecast</h2>
+                    <div class="temp-hours">
+                        <!-- <span class="hour-list">
+                            <h4>4 PM</h4>
+                            <i class="fa-solid fa-circle-dot" style="color: rgb(44, 89, 238);"></i>
+                            <i class="wi wi-cloudy"></i>
+                            <h4>18°C</h4>
+                            <h5>Cloudy</h5>
+                        </span> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="day-forecast">
+            <h2>5-Day Forecast</h2>
+            <div class="temp-forecast" id="scrollbar-hide">
+                <!-- <div class="forecast">
+                <div class="forecast-bg"></div>
+                    <div class="forecast-det">
+                        <h2>Today</h2>
+                        <h2>45°C/38°C</h2>
+                        <i class="wi wi-cloudy"></i>
+                        <h4>Partly Cloudy</h4>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+    </main>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
