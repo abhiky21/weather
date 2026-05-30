@@ -7,15 +7,16 @@ export async function getWeather(city) {
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.API_KEY}&units=metric`,
     );
     const result = await res.json();
-
+    // console.log("api: ", result.city.name.toLowerCase().replace(/ā/g, "a"));
     if (
       result.cod == 200 &&
       result.cod === "200" &&
-      city.toLowerCase() === result.city.name.toLowerCase()
+      city.toLowerCase() == result.city.name.toLowerCase().replace(/ā/g, "a")
     ) {
+      console.log("siwan string");
       return result;
     } else {
-      throw new Error("Weather not found.");
+      return new Error("Weather not found.");
     }
   } catch (error) {
     throw new Error(error.message);

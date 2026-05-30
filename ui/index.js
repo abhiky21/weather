@@ -7,7 +7,7 @@ const navDate = document.querySelector(".nav-date");
 const temperature = document.querySelector(".temperature");
 const tempDetails = document.querySelector("#temp-det-f");
 const tempDet = document.querySelector("#temp-det-s");
-const tempHoours = document.querySelector(".temp-hours");
+const tempHours = document.querySelector(".temp-hours");
 const tempForecast = document.querySelector(".temp-forecast");
 
 const country = {
@@ -24,6 +24,7 @@ const country = {
   PK: "Pakistan",
   SG: "Singapore",
   TH: "Thailand",
+  IR: "Iran",
 };
 
 async function fetchWeather(city) {
@@ -46,9 +47,11 @@ async function fetchWeather(city) {
 
     addingData(todayTemp, result);
 
-    Object.values(result.list).map((dat) => {
-      forecastData(Object.values(result.list), result);
-    });
+    // Object.values(result.list).map((dat) => {
+    //   forecastData(Object.values(result.list), result);
+    // });
+
+    forecastData(Object.values(result.list), result);
   } catch (error) {
     throw new Error(error);
   }
@@ -112,13 +115,15 @@ function addingData(data, result) {
 
   let h1, h3f, h3s, h3t, dayt, htn;
 
-  tempHoours.innerHTML = "";
+  tempHours.innerHTML = "";
 
   let isToday = false;
   let isSunrise = false;
 
   data.map((items) => {
     const now = new Date();
+
+    // console.log(items);
 
     let h3sf = `<h3>Sunrise: ${timeClear(result.city.sunrise)}</h3>
     <h3>Sunset: ${timeClear(result.city.sunset)}</h3>`;
@@ -128,8 +133,7 @@ function addingData(data, result) {
     }
 
     if (
-      timeFormate(items.dt_txt).split("-")[1] <=
-        timeFormate(now).split("-")[1] &&
+      timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt &&
       items.dt_txt.split(" ")[0] == DateForm
     ) {
       isToday = true;
@@ -137,7 +141,7 @@ function addingData(data, result) {
     }
 
     htn = `<span class="hour-list">
-      <h4>${timeFormate(items.dt_txt).split("-")[0]}</h4>
+      <h4>${timeFormate(items.dt_txt).uit}</h4>
       <i class="fa-solid fa-circle-dot" style="color: ${isToday ? "blue" : "black"}"></i>
       <i class="wi wi-cloudy"></i>
       <h4>${parseInt(items.main.temp)}°C</h4>
@@ -146,9 +150,12 @@ function addingData(data, result) {
 
     isToday = false;
 
-    tempHoours.innerHTML += htn;
+    tempHours.innerHTML += htn;
 
-    if (timeFormate(items.dt_txt) <= timeFormate(now)) {
+    if (
+      timeFormate(items.dt_txt) <= timeFormate(now) &&
+      timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt
+    ) {
       h1 = Object.assign(document.createElement("h1"), {
         textContent: parseInt(items.main.temp) + "°C",
       });
@@ -172,20 +179,24 @@ function addingData(data, result) {
   });
 
   temperature.appendChild(h1);
-
-  temperature.appendChild(
-    Object.assign(document.createElement("span"), {
-      className: "day-type",
-      innerHTML: `<i class="wi wi-day-sunny"></i>`,
-    }),
-  );
-
   tempDetails.appendChild(h3f);
   tempDetails.appendChild(h3s);
   tempDetails.appendChild(h3t);
+  // temperature.appendChild(h1);
 
-  const dayType = document.querySelector(".day-type");
-  dayType.appendChild(dayt);
+  const dayType = document.createElement("span");
+  dayType.className = "day-type";
+  dayType.innerHTML = `<i class="wi wi-day-sunny"></i>`;
+
+  if (dayt) {
+    dayType.appendChild(dayt);
+  }
+
+  temperature.appendChild(dayType);
+
+  // tempDetails.appendChild(h3f);
+  // tempDetails.appendChild(h3s);
+  // tempDetails.appendChild(h3t);
 }
 
 input.addEventListener("keydown", function (event) {

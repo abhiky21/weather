@@ -10,7 +10,6 @@ function dateModify(dt) {
 function weekdays(dt) {
   const date = new Date(dt);
   const today = new Date();
-  // 2026-05-26
   if (date.toDateString() == today.toDateString()) {
     return "Today";
   }
@@ -27,11 +26,32 @@ function timeFormate(ti) {
   const time = new Date(ti);
   const hour = time.getHours();
 
-  const ho = time.toLocaleTimeString("en-HI");
+  const formHour = time.toLocaleTimeString("en-HI");
 
-  const h = parseInt(ho.split(":")[0]) + " " + ho.split(" ")[1] + "-" + hour;
+  const final_hour =
+    parseInt(formHour.split(":")[0]) + " " + formHour.split(" ")[1];
 
-  return h;
+  return {
+    uit: final_hour,
+    ckt: hour,
+  };
 }
+
+// if (items.sys.pod == "n") {
+//   console.log(
+//     typeof items.sys.pod + " n" + " " + timeFormate(items.dt_txt).uit,
+//   );
+
+// document.body.style.backgroundImage = "url('assets/weather_neight.png')";
+// selectCity.style.color = "white";
+// } else if (items.sys.pod == "d") {
+//   console.log(items.sys.pod + " d" + " " + timeFormate(items.dt_txt).uit);
+//   document.body.style.backgroundImage = "url('assets/weather_morning.png')";
+//   selectCity.style.color = "black";
+// } else {
+//   console.log(items.sys.pod + " " + timeFormate(items.dt_txt).uit);
+//   document.body.style.backgroundImage = "url('assets/weather-bcImage.png')";
+//   selectCity.style.color = "black";
+// }
 
 export { timeClear, dateModify, weekdays, timeFormate };
