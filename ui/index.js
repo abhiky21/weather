@@ -87,6 +87,7 @@ async function fetchWeather(city) {
       "-" +
       "0" +
       newDate.getDate();
+
     const todayTemp = result.list[DateForm];
     addingData(todayTemp, result);
     forecastData(Object.values(result.list), result);
