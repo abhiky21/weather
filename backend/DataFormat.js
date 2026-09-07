@@ -3,6 +3,8 @@ import { getWeather } from "./api.js";
 async function WeatherForm(city) {
   const weather = await getWeather(city);
 
+  console.log("weather", weather);
+
   const result = weather.list.reduce((acc, item) => {
     const date = DateFormater(item.dt_txt);
 

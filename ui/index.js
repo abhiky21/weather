@@ -9,6 +9,7 @@ const tempDetails = document.querySelector("#temp-det-f");
 const tempDet = document.querySelector("#temp-det-s");
 const tempHours = document.querySelector(".temp-hours");
 const tempForecast = document.querySelector(".temp-forecast");
+const tempSecondCard = document.querySelector(".temp-card");
 
 const country = {
   AU: "Australia",
@@ -33,6 +34,7 @@ async function fetchWeather(city) {
 
     const result = await res.json();
 
+    console.log(result);
     const newDate = new Date();
 
     const DateForm =
@@ -41,6 +43,7 @@ async function fetchWeather(city) {
       "0" +
       (newDate.getMonth() + 1) +
       "-" +
+      "0" +
       newDate.getDate();
 
     const todayTemp = result.list[DateForm];
@@ -122,8 +125,6 @@ function addingData(data, result) {
 
   data.map((items) => {
     const now = new Date();
-
-    // console.log(items);
 
     let h3sf = `<h3>Sunrise: ${timeClear(result.city.sunrise)}</h3>
     <h3>Sunset: ${timeClear(result.city.sunset)}</h3>`;
