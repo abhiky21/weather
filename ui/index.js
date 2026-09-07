@@ -45,7 +45,9 @@ async function fetchWeather(city) {
     // navMain.style.display = "none";
     // daysForecast.style.display = "none";
 
-    const res = await fetch(`http://localhost:3000/weather?city=${city}`);
+    const res = await fetch(
+      `https://weather-api-4jst.onrender.com/weather?city=${encodeURIComponent(city)}`,
+    );
 
     const result = await res.json();
 
