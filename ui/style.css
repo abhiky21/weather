@@ -42,29 +42,26 @@ h5 {
   height: 20px;
   width: 30vh;
   margin-left: 30px;
-  padding-left: 25px;
+  padding-left: 30px;
 }
 
 input {
   border-radius: 5px;
   outline: none;
   font-size: medium;
-  padding-left: 10px;
   border: none;
   box-shadow: 1px 1px 5px rgb(190, 190, 190);
   background-color: #e8f2f9;
 }
 
-.serach-box {
-  position: absolute;
+#form {
+  position: relative;
 }
 
-.serach-box,
-.fa-light {
+.magnifying-glass {
   position: absolute;
-  left: 17.5%;
-  top: 4%;
-  transform: translateY(-50%);
+  left: 40px;
+  top: 5px;
 }
 
 .site-nav {
@@ -384,6 +381,10 @@ h4 {
   .search-box-second {
     display: none;
   }
+
+  .magnifying-glass-second {
+    visibility: hidden;
+  }
 }
 
 @media (max-width: 750px) {
@@ -395,7 +396,7 @@ h4 {
     display: none;
   }
 
-  .search-box-second {
-    display: block;
+  .magnifying-glass-second {
+    visibility: visible;
   }
 }
