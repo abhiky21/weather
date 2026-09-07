@@ -64,6 +64,16 @@ input {
   top: 5px;
 }
 
+.search-box-second {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* .fa-xmark {
+} */
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -366,8 +376,9 @@ h4 {
   gap: 40px;
 }
 
-/* .search-box-second {
-} */
+.magnifying-glass-second {
+  visibility: hidden;
+}
 
 @media (max-width: 850px) {
   #weather-content {
@@ -376,14 +387,6 @@ h4 {
 
   .temp-forecast {
     gap: 20px;
-  }
-
-  .search-box-second {
-    display: none;
-  }
-
-  .magnifying-glass-second {
-    visibility: hidden;
   }
 }
 

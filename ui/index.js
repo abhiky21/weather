@@ -16,6 +16,11 @@ const daysForecast = document.querySelector(".day-forecast");
 const weatherError = document.querySelector("#weather-error");
 const weatherContent = document.querySelector("#weather-content");
 const loadingOverlay = document.getElementById("loading-overlay");
+const headingApp = document.getElementById("heading-app");
+const siteNav = document.getElementById("site-nav");
+const magnifyingGlass = document.querySelector(".magnifying-glass-second");
+const searchBox = document.querySelector(".search-box-second");
+const Xmark = document.querySelector(".fa-xmark");
 
 const country = {
   AU: "Australia",
@@ -295,6 +300,14 @@ function todayDate() {
 
 todayDate();
 
-// Object.values(result.list).map((dat) => {
-//   forecastData(Object.values(result.list), result);
-// });
+magnifyingGlass.addEventListener("click", () => {
+  headingApp.style.display = "none";
+  siteNav.style.display = "none";
+  searchBox.style.display = "flex";
+});
+
+Xmark.addEventListener("click", () => {
+  headingApp.style.display = "flex";
+  siteNav.style.display = "flex";
+  searchBox.style.display = "none";
+});
