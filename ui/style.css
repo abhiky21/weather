@@ -364,6 +364,38 @@ h4 {
 }
 
 .temp-forecast {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   gap: 40px;
+}
+
+/* .search-box-second {
+} */
+
+@media (max-width: 850px) {
+  #weather-content {
+    flex-direction: column;
+  }
+
+  .temp-forecast {
+    gap: 20px;
+  }
+
+  .search-box-second {
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .temp-forecast {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .search-box {
+    display: none;
+  }
+
+  .search-box-second {
+    display: block;
+  }
 }
