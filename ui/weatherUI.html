@@ -33,33 +33,50 @@
 
     <!-- location Name -->
     <main class="weather-main">
+
+        <div id="loading-overlay">
+            <div class="loader"></div>
+            <p>Loading weather...</p>
+        </div>
+
         <div class="nav-main">
             <h2 class="city"></h2>
-            <div class="nav-date">
-            </div>
+            <div class="nav-date"></div>
         </div>
 
         <!-- Temperature Details -->
         <section class="temp-card">
-            <div id="temp-submain" class="temp-sub">
-                <div class="temp-submain"></div>
-                <div class="temperature">
-                </div>
-                <div class="temperature-details">
-                    <div id="temp-det-f" class="temp-det">
-                    </div>
-                    <div id="temp-det-s" class="temp-det">
-                    </div>
-                </div>
-            </div>
 
-            <div id="temp-hour" class="temp-sub">
-                <div class="temp-submain"></div>
-                <div class="temperature-hours">
-                    <h2>24-Hour Forecast</h2>
-                    <div class="temp-hours">
+            <!-- Error message -->
+            <div id="weather-error" class="weather-error"></div>
+
+            <!-- Weather content -->
+            <div id="weather-content">
+
+                <div id="temp-submain" class="temp-sub">
+                    <div class="temp-submain"></div>
+                    <div class="temperature">
+                    </div>
+                    <div class="temperature-details">
+                        <div id="temp-det-f" class="temp-det">
+                        </div>
+
+                        <div id="temp-det-s" class="temp-det">
+                        </div>
                     </div>
                 </div>
+
+                <div id="temp-hour" class="temp-sub">
+                    <div class="temp-submain"></div>
+
+                    <div class="temperature-hours">
+                        <h2>24-Hour Forecast</h2>
+
+                        <div class="temp-hours">
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 

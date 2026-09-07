@@ -88,6 +88,37 @@ input {
   margin-top: 20px;
 }
 
+#loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.loader {
+  width: 45px;
+  height: 45px;
+  border: 5px solid #ddd;
+  border-top: 5px solid #333;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-overlay.active {
+  display: flex;
+}
+
 .nav-main {
   display: flex;
   flex-direction: column;
@@ -193,9 +224,8 @@ h4 {
     rgb(253, 48, 21)
   ); */
 
-.temp-card {
+#weather-content {
   display: flex;
-  /* flex-direction: row; */
   gap: 10px;
   margin-top: 20px;
 }

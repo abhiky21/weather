@@ -9,7 +9,13 @@ const tempDetails = document.querySelector("#temp-det-f");
 const tempDet = document.querySelector("#temp-det-s");
 const tempHours = document.querySelector(".temp-hours");
 const tempForecast = document.querySelector(".temp-forecast");
-const tempSecondCard = document.querySelector(".temp-card");
+// const tempSecondCard = document.querySelector(".temp-card");
+const navMain = document.querySelector(".nav-main");
+const daysForecast = document.querySelector(".day-forecast");
+
+const weatherError = document.querySelector("#weather-error");
+const weatherContent = document.querySelector("#weather-content");
+const loadingOverlay = document.getElementById("loading-overlay");
 
 const country = {
   AU: "Australia",
@@ -30,11 +36,45 @@ const country = {
 
 async function fetchWeather(city) {
   try {
+    // Remove old error
+    weatherError.innerHTML = "";
+
+    // Show loading
+    loadingOverlay.classList.add("active");
+    // weatherContent.style.display = "none";
+    // navMain.style.display = "none";
+    // daysForecast.style.display = "none";
+
     const res = await fetch(`http://localhost:3000/weather?city=${city}`);
 
     const result = await res.json();
 
-    console.log(result);
+    if (!res.ok) {
+      weatherError.innerHTML = `
+        <h2>⚠️ ${result.message || "Weather not found"}</h2>
+      `;
+      navMain.style.display = "none";
+      weatherContent.style.display = "none";
+      daysForecast.style.display = "none";
+      return;
+    }
+
+    // Unexpected response
+    if (result.cod !== "200" && result.cod !== 200) {
+      weatherError.innerHTML = `
+        <h2>⚠️ Weather data not found</h2>
+      `;
+      navMain.style.display = "none";
+      weatherContent.style.display = "none";
+      daysForecast.style.display = "none";
+      return;
+    }
+
+    weatherError.innerHTML = "";
+    weatherContent.style.display = "flex";
+    navMain.style.display = "block";
+    daysForecast.style.display = "block";
+
     const newDate = new Date();
 
     const DateForm =
@@ -45,18 +85,21 @@ async function fetchWeather(city) {
       "-" +
       "0" +
       newDate.getDate();
-
     const todayTemp = result.list[DateForm];
-
     addingData(todayTemp, result);
-
-    // Object.values(result.list).map((dat) => {
-    //   forecastData(Object.values(result.list), result);
-    // });
-
     forecastData(Object.values(result.list), result);
   } catch (error) {
-    throw new Error(error);
+    console.error("Fetch error:", error);
+
+    weatherContent.style.display = "none";
+    daysForecast.style.display = "none";
+    navMain.style.display = "none";
+    weatherError.innerHTML = `
+      <h2>⚠️ Unable to connect to server</h2>
+      <p>Please try again later.</p>
+    `;
+  } finally {
+    loadingOverlay.classList.remove("active");
   }
 }
 
@@ -213,7 +256,6 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const city = input.value;
-
   await fetchWeather(city);
 });
 
@@ -249,3 +291,7 @@ function todayDate() {
 }
 
 todayDate();
+
+// Object.values(result.list).map((dat) => {
+//   forecastData(Object.values(result.list), result);
+// });

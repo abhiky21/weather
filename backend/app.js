@@ -10,9 +10,14 @@ app.get("/weather", async (req, res) => {
     const city = req.query.city;
 
     const result = await Weatherform(city);
-    return res.json(result);
+    return res.status(200).json(result);
   } catch (error) {
-    console.log(error);
+    console.error("Backend error:", error.message);
+
+    return res.status(404).json({
+      success: false,
+      message: error.message,
+    });
   }
 });
 

@@ -8,19 +8,25 @@ export async function getWeather(city) {
     );
     const result = await res.json();
 
-    // console.log("api: ", result.city.name.toLowerCase().replace(/ā/g, "a"));
-    if (
-      result.cod == 200 &&
-      result.cod === "200" &&
-      city.toLowerCase() == result.city.name.toLowerCase().replace(/ā/g, "a")
-    ) {
-      console.log("siwan string");
-      return {
-        status: "success",
-        result,
-      };
-    } else {
-      return new Error("Weather not found.");
+    if (res.status === 401) {
+      throw new Error("Invalid API key.");
+    }
+
+    if (res.status === 404) {
+      throw new Error(`City "${city}" not found.`);
+    }
+
+    if (!res.ok) {
+      throw new Error(result.message || "Weather API request failed.");
+    }
+
+    if (result.cod !== "200") {
+      throw new Error(result.message || "Weather data not found.");
+    }
+
+    // Successful response
+    if (result.cod === "200") {
+      return result;
     }
   } catch (error) {
     throw new Error(error.message);
