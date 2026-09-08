@@ -430,4 +430,8 @@ h4 {
   .temperature h1 {
     font-size: 60px;
   }
+
+  .temperature-hours h2 {
+    padding-left: 8px;
+  }
 }
