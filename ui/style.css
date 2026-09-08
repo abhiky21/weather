@@ -434,4 +434,8 @@ h4 {
   .temperature-hours h2 {
     font-size: 12px;
   }
+
+  .hour-list h4 {
+    font-size: 16px;
+  }
 }

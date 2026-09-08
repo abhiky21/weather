@@ -48,6 +48,39 @@ const country = {
   IR: "Iran",
 };
 
+function getWeatherIcon(icon) {
+  const icons = {
+    "01d": "wi-day-sunny",
+    "01n": "wi-night-clear",
+
+    "02d": "wi-day-cloudy",
+    "02n": "wi-night-alt-cloudy",
+
+    "03d": "wi-cloudy",
+    "03n": "wi-cloudy",
+
+    "04d": "wi-cloudy",
+    "04n": "wi-cloudy",
+
+    "09d": "wi-showers",
+    "09n": "wi-showers",
+
+    "10d": "wi-day-rain",
+    "10n": "wi-night-alt-rain",
+
+    "11d": "wi-day-thunderstorm",
+    "11n": "wi-night-alt-thunderstorm",
+
+    "13d": "wi-day-snow",
+    "13n": "wi-night-alt-snow",
+
+    "50d": "wi-day-fog",
+    "50n": "wi-night-fog",
+  };
+
+  return icons[icon] || "wi-na";
+}
+
 async function fetchWeather(city) {
   try {
     // Remove old error
@@ -127,6 +160,9 @@ function forecastData(info, result) {
     const item = day[0];
 
     const temps = day.map((d) => d.main.temp);
+    const icon = getWeatherIcon(item.weather[0].icon);
+
+    console.log(icon);
 
     const max = Math.max(...temps);
     const min = Math.min(...temps);
@@ -139,7 +175,7 @@ function forecastData(info, result) {
                     <div class="forecast-det">
                         <h2>${weekdays(item.dt_txt)}</h2>
                         <h2>${parseInt(max)}°C/${parseInt(min)}°C</h2>
-                        <i class="wi wi-cloudy"></i>
+                        <i class="wi ${icon}"></i>
                         <h4>${item.weather[0].main}</h4>
                     </div>`;
 
@@ -201,10 +237,12 @@ function addingData(data, result) {
       isSunrise = true;
     }
 
+    const icon = getWeatherIcon(items.weather[0].icon);
+
     htn = `<span class="hour-list">
       <h4>${timeFormate(items.dt_txt).uit}</h4>
       <i class="fa-solid fa-circle-dot" style="color: ${isToday ? "blue" : "black"}"></i>
-      <i class="wi wi-cloudy"></i>
+      <i class="wi ${icon}"></i>
       <h4>${parseInt(items.main.temp)}°C</h4>
       <h5>${items.weather[0].main}</h5>
       </span>`;
