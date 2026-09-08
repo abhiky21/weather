@@ -432,6 +432,6 @@ h4 {
   }
 
   .temperature-hours h2 {
-    padding-left: 8px;
+    font-size: 12px;
   }
 }
