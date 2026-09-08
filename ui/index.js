@@ -162,8 +162,6 @@ function forecastData(info, result) {
     const temps = day.map((d) => d.main.temp);
     const icon = getWeatherIcon(item.weather[0].icon);
 
-    console.log(icon);
-
     const max = Math.max(...temps);
     const min = Math.min(...temps);
 
@@ -217,22 +215,20 @@ function addingData(data, result) {
   tempHours.innerHTML = "";
 
   let isToday = false;
-  let isSunrise = false;
+  let isSunrise = true;
 
   data.map((items) => {
     const now = new Date();
 
-    let h3sf = `<h3>Sunrise: ${timeClear(result.city.sunrise)}</h3>
-    <h3>Sunset: ${timeClear(result.city.sunset)}</h3>`;
+    let h3sf = `<div class="sunrise">
+    <h3>Sunrise: ${timeClear(result.city.sunrise)}</h3>
+    <h3>Sunset: ${timeClear(result.city.sunset)}</h3></div>`;
 
     if (isSunrise) {
       tempDet.innerHTML = h3sf;
     }
 
-    if (
-      timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt &&
-      items.dt_txt.split(" ")[0] == DateForm
-    ) {
+    if (timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt) {
       isToday = true;
       isSunrise = true;
     }
