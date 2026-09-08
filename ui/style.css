@@ -75,7 +75,7 @@ input {
   position: absolute;
   display: none;
   right: 10px;
-  top: 20px;
+  top: 17px;
   color: gray;
   cursor: pointer;
 }
@@ -226,22 +226,6 @@ h4 {
   top: 25px;
   text-align: center;
 }
-
-/* background: linear-gradient(
-    to bottom,
-    rgb(1, 81, 253),
-    rgb(28, 97, 248),
-    rgb(59, 119, 247),
-    rgb(86, 138, 250),
-    rgb(121, 164, 255),
-    rgb(150, 182, 252),
-    rgb(243, 252, 195),
-    rgb(253, 239, 109),
-    rgb(255, 237, 70),
-    rgb(253, 212, 29),
-    rgb(253, 163, 29),
-    rgb(253, 48, 21)
-  ); */
 
 #weather-content {
   display: flex;

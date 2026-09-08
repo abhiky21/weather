@@ -9,19 +9,17 @@ const tempHours = document.querySelector(".temp-hours");
 const tempForecast = document.querySelector(".temp-forecast");
 const navMain = document.querySelector(".nav-main");
 const daysForecast = document.querySelector(".day-forecast");
-
 const weatherError = document.querySelector("#weather-error");
 const weatherContent = document.querySelector("#weather-content");
 const loadingOverlay = document.getElementById("loading-overlay");
 const magnifyingGlass = document.querySelector(".magnifying-glass-second");
 const closeSearch = document.querySelector(".close-search");
 const navbar = document.getElementById("navbar-container");
-
 const desktopForm = document.getElementById("desktop-form");
 const mobileForm = document.getElementById("mobile-form");
-
 const desktopInput = document.getElementById("search-city");
 const mobileInput = document.getElementById("input-city");
+const forms = document.querySelectorAll("form");
 
 magnifyingGlass.addEventListener("click", () => {
   navbar.classList.add("search-open");
@@ -83,14 +81,9 @@ function getWeatherIcon(icon) {
 
 async function fetchWeather(city) {
   try {
-    // Remove old error
     weatherError.innerHTML = "";
-
     // Show loading
     loadingOverlay.classList.add("active");
-    // weatherContent.style.display = "none";
-    // navMain.style.display = "none";
-    // daysForecast.style.display = "none";
 
     const res = await fetch(
       `https://weather-api-4jst.onrender.com/weather?city=${encodeURIComponent(city)}`,
@@ -108,7 +101,6 @@ async function fetchWeather(city) {
       return;
     }
 
-    // Unexpected response
     if (result.cod !== "200" && result.cod !== 200) {
       weatherError.innerHTML = `
         <h2>⚠️ Weather data not found</h2>
@@ -166,7 +158,6 @@ function forecastData(info, result) {
     const min = Math.min(...temps);
 
     const forecast = document.createElement("div");
-
     forecast.className = "forecast";
 
     forecast.innerHTML = `<div class="forecast-bg"></div>
@@ -185,15 +176,15 @@ function forecastData(info, result) {
 }
 
 function addingData(data, result) {
-  const newDate = new Date();
+  // const newDate = new Date();
 
-  const DateForm =
-    newDate.getFullYear() +
-    "-" +
-    "0" +
-    (newDate.getMonth() + 1) +
-    "-" +
-    newDate.getDate();
+  // const DateForm =
+  //   newDate.getFullYear() +
+  //   "-" +
+  //   "0" +
+  //   (newDate.getMonth() + 1) +
+  //   "-" +
+  //   newDate.getDate();
 
   const parents = document.querySelectorAll(
     ".temperature, #temp-det-f, #temp-det-s",
@@ -289,43 +280,25 @@ function addingData(data, result) {
   temperature.appendChild(dayType);
 }
 
-const forms = document.querySelectorAll("form");
+async function handleSearch(event) {
+  event.preventDefault();
 
-forms.forEach((form) => {
-  const input = form.querySelector("input");
-  const removeSearch = document.querySelector(".remove-search");
+  const input = event.target.querySelector("input");
+  const city = input.value.trim();
 
-  input.addEventListener("input", () => {
-    if (input.value.trim() != "") {
-      removeSearch.style.display = "block";
-    } else {
-      removeSearch.style.display = "none";
-    }
-  });
+  if (!city) return;
 
-  removeSearch.addEventListener("click", () => {
-    input.value = "";
-    removeSearch.style.display = "none";
-    input.focus();
-  });
+  desktopInput.value = city;
+  mobileInput.value = city;
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  await fetchWeather(city);
+}
 
-    const city = input.value.trim();
+desktopInput.value = "Delhi";
+mobileInput.value = "Delhi";
 
-    if (!city) return;
-
-    desktopInput.value = city;
-    mobileInput.value = city;
-
-    document.querySelectorAll(".remove-search").forEach((x) => {
-      x.style.display = "block";
-    });
-
-    await fetchWeather(city);
-  });
-});
+desktopForm.addEventListener("submit", handleSearch);
+mobileForm.addEventListener("submit", handleSearch);
 
 fetchWeather("delhi");
 
@@ -359,5 +332,26 @@ function todayDate() {
 
   navDate.appendChild(h3);
 }
+
+forms.forEach((form) => {
+  const input = form.querySelector("input");
+  const removeSearch = form.querySelector(".remove-search");
+
+  input.addEventListener("input", () => {
+    if (input.value.trim() !== "") {
+      removeSearch.style.display = "block";
+    } else {
+      removeSearch.style.display = "none";
+    }
+  });
+
+  removeSearch.addEventListener("click", () => {
+    input.value = "";
+
+    removeSearch.style.display = "none";
+
+    input.focus();
+  });
+});
 
 todayDate();
