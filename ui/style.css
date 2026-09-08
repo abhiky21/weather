@@ -12,11 +12,10 @@ body {
 
 #navbar-container {
   background: #dceefa;
-  padding: 10px 20px;
+  padding: 20px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 0px 0px 10px 10px;
   box-shadow: 1px 1px 10px rgb(177, 176, 176);
 }
 
@@ -41,7 +40,6 @@ h5 {
 
 #search-city,
 #input-city {
-  height: 20px;
   width: 30vh;
   margin-left: 30px;
   padding-left: 30px;
@@ -56,6 +54,8 @@ input {
   outline: none;
   font-size: medium;
   border: none;
+  padding: 10px;
+  padding-right: 30px;
   box-shadow: 1px 1px 5px rgb(190, 190, 190);
   background-color: #e8f2f9;
 }
@@ -68,7 +68,16 @@ input {
 .magnifying-glass {
   position: absolute;
   left: 40px;
-  top: 5px;
+  top: 12px;
+}
+
+.remove-search {
+  position: absolute;
+  display: none;
+  right: 10px;
+  top: 20px;
+  color: gray;
+  cursor: pointer;
 }
 
 .search-box-second {

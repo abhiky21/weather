@@ -289,25 +289,43 @@ function addingData(data, result) {
   temperature.appendChild(dayType);
 }
 
-async function handleSearch(event) {
-  event.preventDefault();
+const forms = document.querySelectorAll("form");
 
-  const input = event.target.querySelector("input");
-  const city = input.value.trim();
+forms.forEach((form) => {
+  const input = form.querySelector("input");
+  const removeSearch = document.querySelector(".remove-search");
 
-  if (!city) return;
+  input.addEventListener("input", () => {
+    if (input.value.trim() != "") {
+      removeSearch.style.display = "block";
+    } else {
+      removeSearch.style.display = "none";
+    }
+  });
 
-  desktopInput.value = city;
-  mobileInput.value = city;
+  removeSearch.addEventListener("click", () => {
+    input.value = "";
+    removeSearch.style.display = "none";
+    input.focus();
+  });
 
-  await fetchWeather(city);
-}
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-desktopInput.value = "Delhi";
-mobileInput.value = "Delhi";
+    const city = input.value.trim();
 
-desktopForm.addEventListener("submit", handleSearch);
-mobileForm.addEventListener("submit", handleSearch);
+    if (!city) return;
+
+    desktopInput.value = city;
+    mobileInput.value = city;
+
+    document.querySelectorAll(".remove-search").forEach((x) => {
+      x.style.display = "block";
+    });
+
+    await fetchWeather(city);
+  });
+});
 
 fetchWeather("delhi");
 
