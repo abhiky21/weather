@@ -178,11 +178,6 @@ input {
   color: rgb(66, 66, 66);
 }
 
-.temp {
-  font-size: 100px;
-  margin: 0px;
-}
-
 #weather-temp {
   display: flex;
   flex-direction: column;
@@ -237,6 +232,7 @@ h4 {
   width: 400px;
   height: 200px;
   overflow: hidden;
+  padding: 4px;
 }
 
 .temp-submain {
@@ -251,15 +247,22 @@ h4 {
 
 .temperature {
   position: relative;
-  z-index: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
+  z-index: 2;
   gap: 80px;
 }
 
 .temperature h1 {
   margin: 5px;
   font-size: 80px;
+}
+
+.day-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .wi {
@@ -274,20 +277,17 @@ h4 {
 
 .temperature-details {
   position: relative;
-  z-index: 2;
   display: flex;
-  gap: 100px;
-  margin-left: 25px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+  margin: 0px 20px 0px 20px;
 }
 
 .temp-det h3 {
   padding: 1px;
   color: #2c3345;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
-.sunrise {
-  font-size: 10px;
 }
 
 .temperature-hours {
@@ -438,5 +438,9 @@ h4 {
 
   .forecast {
     width: 120px;
+  }
+
+  .temp-det h3 {
+    font-size: 10px;
   }
 }

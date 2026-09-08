@@ -121,11 +121,9 @@ async function fetchWeather(city) {
     const DateForm =
       newDate.getFullYear() +
       "-" +
-      "0" +
-      (newDate.getMonth() + 1) +
+      String(newDate.getMonth() + 1).padStart(2, "0") +
       "-" +
-      "0" +
-      newDate.getDate();
+      String(newDate.getDate()).padStart(2, "0");
 
     const todayTemp = result.list[DateForm];
     addingData(todayTemp, result);
@@ -176,15 +174,14 @@ function forecastData(info, result) {
 }
 
 function addingData(data, result) {
-  // const newDate = new Date();
+  const newDate = new Date();
 
-  // const DateForm =
-  //   newDate.getFullYear() +
-  //   "-" +
-  //   "0" +
-  //   (newDate.getMonth() + 1) +
-  //   "-" +
-  //   newDate.getDate();
+  const DateForm =
+    newDate.getFullYear() +
+    "-" +
+    String(newDate.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(newDate.getDate()).padStart(2, "0");
 
   const parents = document.querySelectorAll(
     ".temperature, #temp-det-f, #temp-det-s",
@@ -201,7 +198,7 @@ function addingData(data, result) {
       result.city.name + ", " + country[result.city.country];
   }
 
-  let h1, h3f, h3s, h3t, dayt, htn;
+  let h1, h3f, h3s, h3t, dayt, htn, icon;
 
   tempHours.innerHTML = "";
 
@@ -211,20 +208,23 @@ function addingData(data, result) {
   data.map((items) => {
     const now = new Date();
 
-    let h3sf = `<div class="sunrise">
+    let h3sf = `
     <h3>Sunrise: ${timeClear(result.city.sunrise)}</h3>
-    <h3>Sunset: ${timeClear(result.city.sunset)}</h3></div>`;
+    <h3>Sunset: ${timeClear(result.city.sunset)}</h3>`;
 
     if (isSunrise) {
       tempDet.innerHTML = h3sf;
     }
 
-    if (timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt) {
+    if (
+      timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt &&
+      dateModify(items.dt_txt) === DateForm
+    ) {
       isToday = true;
       isSunrise = true;
     }
 
-    const icon = getWeatherIcon(items.weather[0].icon);
+    icon = getWeatherIcon(items.weather[0].icon);
 
     htn = `<span class="hour-list">
       <h4>${timeFormate(items.dt_txt).uit}</h4>
@@ -269,9 +269,9 @@ function addingData(data, result) {
   tempDetails.appendChild(h3s);
   tempDetails.appendChild(h3t);
 
-  const dayType = document.createElement("span");
+  const dayType = document.createElement("div");
   dayType.className = "day-type";
-  dayType.innerHTML = `<i class="wi wi-day-sunny"></i>`;
+  dayType.innerHTML = `<i class="wi ${icon}"></i>`;
 
   if (dayt) {
     dayType.appendChild(dayt);
