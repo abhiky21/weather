@@ -140,6 +140,7 @@ input {
 
 .nav-main {
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -165,8 +166,7 @@ input {
 .time {
   margin: 0px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  /* color: rgb(66, 66, 66); */
-  font-size: medium;
+  color: rgb(66, 66, 66);
 }
 
 .temp {
@@ -194,7 +194,6 @@ h4 {
 .environ {
   display: flex;
   flex-direction: column;
-  /* align-items:; */
   justify-content: center;
 }
 
@@ -213,18 +212,10 @@ h4 {
   color: rgb(92, 92, 92);
 }
 
-/* #huma {
-} */
-
 .fa-sun {
   position: relative;
   top: 25px;
   text-align: center;
-}
-
-.nav-main {
-  display: flex;
-  justify-content: space-between;
 }
 
 /* background: linear-gradient(
@@ -287,9 +278,6 @@ h4 {
   font-size: 18px;
   padding-top: 5px;
 }
-
-/* .temperature h1 {
-} */
 
 .temperature-details {
   position: relative;
@@ -411,15 +399,6 @@ h4 {
     visibility: visible;
   }
 
-  /* Keep normal navbar */
-  /* #heading-app {
-    display: flex;
-  }
-
-  .site-nav {
-    display: flex;
-  } */
-
   #navbar-container.search-open #heading-app {
     display: none;
   }
@@ -434,29 +413,21 @@ h4 {
   }
 }
 
-/* <header id="navbar-container">
-        <div id="heading-app">
-            <i class="fa-solid fa-cloud-sun fa-xl"></i>
-            <h3>Weather App</h3>
+@media (max-width: 480px) {
+  .temp-sub {
+    width: 350px;
+    height: 150px;
+  }
 
-            <div class="search-box">
-                <form id="form">
-                    <i class="fa-solid fa-magnifying-glass magnifying-glass" style="color: rgb(0, 0, 0);"></i>
-                    <input type="text" name="search" value="delhi" placeholder="Search for location" id="search-city">
-                </form>
-            </div>
-        </div>
+  .nav-date h3 {
+    font-size: 10px;
+  }
 
-        <div class="search-box-second">
-            <form id="form">
-                <i class="fa-solid fa-magnifying-glass magnifying-glass" style="color: rgb(0, 0, 0);"></i>
-                <input type="text" name="search" placeholder="Search for location" id="input-city">
-            </form>
-            <i class="fa-solid fa-xmark fa-lg" style="color: rgb(0, 0, 0); cursor: pointer;"></i>
-        </div>
-        <nav class="site-nav" id="site-nav">
-            <i class="fa-solid fa-magnifying-glass magnifying-glass-second"
-                style="color: rgb(0, 0, 0); cursor: pointer;"></i>
-            <i class="fa-solid fa-gear fa-xl"></i>
-            </div>
-    </header> */
+  .nav-main h2 {
+    font-size: 30px;
+  }
+
+  .temperature h1 {
+    font-size: 60px;
+  }
+}
