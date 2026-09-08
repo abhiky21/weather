@@ -14,28 +14,44 @@
 <body>
     <!-- Navbar -->
     <header id="navbar-container">
+
         <div id="heading-app">
             <i class="fa-solid fa-cloud-sun fa-xl"></i>
             <h3>Weather App</h3>
+
+            <!-- Laptop search -->
             <div class="search-box">
-                <form id="form">
-                    <i class="fa-solid fa-magnifying-glass magnifying-glass" style="color: rgb(0, 0, 0);"></i>
-                    <input type="text" name="search" value="delhi" placeholder="Search for location" id="search-city">
+                <form id="desktop-form">
+                    <i class="fa-solid fa-magnifying-glass magnifying-glass"></i>
+                    <input type="text" name="search" placeholder="Search for location" id="search-city">
                 </form>
             </div>
+
         </div>
+
+
+        <!-- Mobile search -->
         <div class="search-box-second">
-            <form id="form">
-                <i class="fa-solid fa-magnifying-glass magnifying-glass" style="color: rgb(0, 0, 0);"></i>
-                <input type="text" name="search" value="delhi" placeholder="Search for location" id="search-city">
+
+            <form id="mobile-form">
+                <i class="fa-solid fa-magnifying-glass magnifying-glass"></i>
+                <input type="text" name="search" placeholder="Search for location" id="input-city">
             </form>
-            <i class="fa-solid fa-xmark fa-lg" style="color: rgb(0, 0, 0); cursor: pointer;"></i>
+
+            <i class="fa-solid fa-xmark fa-lg close-search"></i>
+
         </div>
+
+
         <nav class="site-nav" id="site-nav">
+
+            <!-- Mobile search button -->
             <i class="fa-solid fa-magnifying-glass magnifying-glass-second"
                 style="color: rgb(0, 0, 0); cursor: pointer;"></i>
             <i class="fa-solid fa-gear fa-xl"></i>
-            </div>
+
+        </nav>
+
     </header>
 
     <!-- location Name -->

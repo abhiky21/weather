@@ -1,26 +1,35 @@
 import { timeClear, dateModify, weekdays, timeFormate } from "./service.js";
 
-const input = document.getElementById("search-city");
 let selectCity = document.querySelector(".city");
-const form = document.getElementById("form");
 const navDate = document.querySelector(".nav-date");
 const temperature = document.querySelector(".temperature");
 const tempDetails = document.querySelector("#temp-det-f");
 const tempDet = document.querySelector("#temp-det-s");
 const tempHours = document.querySelector(".temp-hours");
 const tempForecast = document.querySelector(".temp-forecast");
-// const tempSecondCard = document.querySelector(".temp-card");
 const navMain = document.querySelector(".nav-main");
 const daysForecast = document.querySelector(".day-forecast");
 
 const weatherError = document.querySelector("#weather-error");
 const weatherContent = document.querySelector("#weather-content");
 const loadingOverlay = document.getElementById("loading-overlay");
-const headingApp = document.getElementById("heading-app");
-const siteNav = document.getElementById("site-nav");
 const magnifyingGlass = document.querySelector(".magnifying-glass-second");
-const searchBox = document.querySelector(".search-box-second");
-const Xmark = document.querySelector(".fa-xmark");
+const closeSearch = document.querySelector(".close-search");
+const navbar = document.getElementById("navbar-container");
+
+const desktopForm = document.getElementById("desktop-form");
+const mobileForm = document.getElementById("mobile-form");
+
+const desktopInput = document.getElementById("search-city");
+const mobileInput = document.getElementById("input-city");
+
+magnifyingGlass.addEventListener("click", () => {
+  navbar.classList.add("search-open");
+});
+
+closeSearch.addEventListener("click", () => {
+  navbar.classList.remove("search-open");
+});
 
 const country = {
   AU: "Australia",
@@ -234,7 +243,6 @@ function addingData(data, result) {
   tempDetails.appendChild(h3f);
   tempDetails.appendChild(h3s);
   tempDetails.appendChild(h3t);
-  // temperature.appendChild(h1);
 
   const dayType = document.createElement("span");
   dayType.className = "day-type";
@@ -245,27 +253,29 @@ function addingData(data, result) {
   }
 
   temperature.appendChild(dayType);
-
-  // tempDetails.appendChild(h3f);
-  // tempDetails.appendChild(h3s);
-  // tempDetails.appendChild(h3t);
 }
 
-input.addEventListener("keydown", function (event) {
-  let inpcity = input.value;
-  if (event.key == "Enter") {
-    fetchWeather(inpcity);
-  }
-});
+async function handleSearch(event) {
+  event.preventDefault();
+
+  const input = event.target.querySelector("input");
+  const city = input.value.trim();
+
+  if (!city) return;
+
+  desktopInput.value = city;
+  mobileInput.value = city;
+
+  await fetchWeather(city);
+}
+
+desktopInput.value = "Delhi";
+mobileInput.value = "Delhi";
+
+desktopForm.addEventListener("submit", handleSearch);
+mobileForm.addEventListener("submit", handleSearch);
 
 fetchWeather("delhi");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const city = input.value;
-  await fetchWeather(city);
-});
 
 function todayDate() {
   const date = new Date();
@@ -299,15 +309,3 @@ function todayDate() {
 }
 
 todayDate();
-
-magnifyingGlass.addEventListener("click", () => {
-  headingApp.style.display = "none";
-  siteNav.style.display = "none";
-  searchBox.style.display = "flex";
-});
-
-Xmark.addEventListener("click", () => {
-  headingApp.style.display = "flex";
-  siteNav.style.display = "flex";
-  searchBox.style.display = "none";
-});

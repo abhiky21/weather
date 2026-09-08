@@ -14,6 +14,7 @@ body {
   background: #dceefa;
   padding: 10px 20px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 1px 1px 10px rgb(177, 176, 176);
@@ -21,8 +22,8 @@ body {
 
 #heading-app {
   display: flex;
-  /* margin: 10px; */
-  gap: 10px;
+  align-items: center;
+  gap: 20px;
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -38,11 +39,16 @@ h5 {
   text-align: center;
 }
 
-#search-city {
+#search-city,
+#input-city {
   height: 20px;
   width: 30vh;
   margin-left: 30px;
   padding-left: 30px;
+}
+
+.search-box {
+  display: block;
 }
 
 input {
@@ -54,7 +60,8 @@ input {
   background-color: #e8f2f9;
 }
 
-#form {
+#desktop-form,
+#mobile-form {
   position: relative;
 }
 
@@ -71,20 +78,25 @@ input {
   gap: 20px;
 }
 
-/* .fa-xmark {
-} */
+.magnifying-glass-second {
+  visibility: hidden;
+}
 
 .site-nav {
   display: flex;
   align-items: center;
   color: #2c3345;
-  gap: 10px;
+  gap: 20px;
 }
 
 .site-nav a {
   text-decoration: none;
   color: #2c3345;
   font-weight: 800;
+}
+
+.close-search {
+  cursor: pointer;
 }
 
 .weather-main {
@@ -376,10 +388,6 @@ h4 {
   gap: 40px;
 }
 
-.magnifying-glass-second {
-  visibility: hidden;
-}
-
 @media (max-width: 850px) {
   #weather-content {
     flex-direction: column;
@@ -402,4 +410,53 @@ h4 {
   .magnifying-glass-second {
     visibility: visible;
   }
+
+  /* Keep normal navbar */
+  /* #heading-app {
+    display: flex;
+  }
+
+  .site-nav {
+    display: flex;
+  } */
+
+  #navbar-container.search-open #heading-app {
+    display: none;
+  }
+
+  #navbar-container.search-open .site-nav {
+    display: none;
+  }
+
+  #navbar-container.search-open .search-box-second {
+    display: flex;
+    width: 100%;
+  }
 }
+
+/* <header id="navbar-container">
+        <div id="heading-app">
+            <i class="fa-solid fa-cloud-sun fa-xl"></i>
+            <h3>Weather App</h3>
+
+            <div class="search-box">
+                <form id="form">
+                    <i class="fa-solid fa-magnifying-glass magnifying-glass" style="color: rgb(0, 0, 0);"></i>
+                    <input type="text" name="search" value="delhi" placeholder="Search for location" id="search-city">
+                </form>
+            </div>
+        </div>
+
+        <div class="search-box-second">
+            <form id="form">
+                <i class="fa-solid fa-magnifying-glass magnifying-glass" style="color: rgb(0, 0, 0);"></i>
+                <input type="text" name="search" placeholder="Search for location" id="input-city">
+            </form>
+            <i class="fa-solid fa-xmark fa-lg" style="color: rgb(0, 0, 0); cursor: pointer;"></i>
+        </div>
+        <nav class="site-nav" id="site-nav">
+            <i class="fa-solid fa-magnifying-glass magnifying-glass-second"
+                style="color: rgb(0, 0, 0); cursor: pointer;"></i>
+            <i class="fa-solid fa-gear fa-xl"></i>
+            </div>
+    </header> */
