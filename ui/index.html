@@ -14,11 +14,9 @@
 <body>
     <!-- Navbar -->
     <header id="navbar-container">
-
         <div id="heading-app">
             <i class="fa-solid fa-cloud-sun fa-xl"></i>
             <h3>Weather App</h3>
-
             <!-- Laptop search -->
             <div class="search-box">
                 <form id="desktop-form">
@@ -27,46 +25,42 @@
                     <i class="fa-solid fa-xmark fa-lg remove-search"></i>
                 </form>
             </div>
-
         </div>
-
 
         <!-- Mobile search -->
         <div class="search-box-second">
-
             <form id="mobile-form">
                 <!-- <i class="fa-solid fa-magnifying-glass magnifying-glass"></i> -->
                 <input type="text" name="search" placeholder="Search for location" id="input-city">
                 <i class="fa-solid fa-xmark fa-lg remove-search"></i>
             </form>
-
             <i class="fa-solid fa-xmark fa-lg close-search"></i>
-
         </div>
 
-
         <nav class="site-nav" id="site-nav">
-
             <!-- Mobile search button -->
             <i class="fa-solid fa-magnifying-glass magnifying-glass-second"
-                style="color: rgb(0, 0, 0); cursor: pointer;"></i>
-            <i class="fa-solid fa-gear fa-xl"></i>
-
+                style="color: #A7B2BD; cursor: pointer;"></i>
+            <i class="fa-solid fa-gear fa-xl" style="color: #A7B2BD;;"></i>
         </nav>
-
     </header>
 
     <!-- location Name -->
     <main class="weather-main">
-
+        <!---Loading animation-->
         <div id="loading-overlay">
             <div class="loader"></div>
             <p>Loading weather...</p>
         </div>
 
         <div class="nav-main">
-            <h2 class="city"></h2>
-            <div class="nav-date"></div>
+            <div class="location-Date">
+                <h2 class="city"></h2>
+                <div class="nav-date"></div>
+            </div>
+            <div class="live-rader">
+                <h4>Live Rader</h4>
+            </div>
         </div>
 
         <!-- Temperature Details -->
@@ -77,38 +71,33 @@
 
             <!-- Weather content -->
             <div id="weather-content">
-
-                <div id="temp-submain" class="temp-sub">
-                    <div class="temp-submain"></div>
-                    <div class="temperature">
-                    </div>
-                    <div class="temperature-details">
-                        <div id="temp-det-f" class="temp-det"></div>
-                        <div id="temp-det-s" class="temp-det">
-                        </div>
-                    </div>
+                <div id="temp-submain" class="temp-current">
+                    <div class="temp-submain"></div>101a2d
+                    <h4 class="current-obs">• CURRENT OBSERVATION</h4>
+                    <div class="temperature"></div>
+                    <div class="temperature-details"></div>
                 </div>
 
-                <div id="temp-hour" class="temp-sub">
+                <div id="temp-hour" class="temp-hourly">
                     <div class="temp-submain"></div>
-
                     <div class="temperature-hours">
                         <h2>24-Hour Forecast</h2>
 
-                        <div class="temp-hours">
+                        <div class="trend-chart">
+                            <canvas id="weather-trend-chart" class="weather-trend-chart"></canvas>
                         </div>
+                        <div id="trend-hours" class="temp-hours"></div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <section class="day-forecast">
-            <h2>5-Day Forecast</h2>
-            <div class="temp-forecast" id="scrollbar-hide">
-            </div>
+            <h2 class="forecast-heading">5-Day Extended Outlook</h2>
+            <div class="temp-forecast" id="scrollbar-hide"></div>
         </section>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="index.js"></script>
 </body>
 
