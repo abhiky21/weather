@@ -147,7 +147,9 @@ export function createWeatherTrend(data) {
     }
 
     card.addEventListener("click", () => {
-      createWeatherDetails(items);
+      const newDetails = createWeatherDetails(items);
+      console.log(items);
+      document.querySelector("#temp-det-f")?.replaceWith(newDetails);
 
       selectedHour(card);
     });

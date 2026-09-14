@@ -2,7 +2,7 @@ import { getWeatherIcon } from "./store/data.js";
 
 const temperature = document.querySelector(".temperature");
 
-function createDetailCard(className, title, value, secondary = "") {
+function createDetailCard(className, title, value) {
   const card = document.createElement("div");
   card.className = className;
 
@@ -27,8 +27,8 @@ export function createWeatherDetails(items) {
   container.innerHTML = "";
   temperature.innerHTML = "";
 
+  // Weather Icons and Description
   const weatherIcon = getWeatherIcon(items.weather[0].icon);
-
   const dayType = document.createElement("div");
   dayType.className = "day-type";
   dayType.innerHTML = `<i class="wi ${weatherIcon}"></i>`;
@@ -38,6 +38,7 @@ export function createWeatherDetails(items) {
 
   dayType.appendChild(dayText);
 
+  // temperature details
   const tempDiv = document.createElement("div");
   tempDiv.className = "temp-feels";
 
@@ -48,6 +49,7 @@ export function createWeatherDetails(items) {
   const span = document.createElement("span");
   span.textContent = "°C";
 
+  // temperature max and min
   const feelsLike = document.createElement("h3");
   feelsLike.textContent = "Feels like ";
 

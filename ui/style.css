@@ -125,7 +125,7 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0px 60px 0px;
   width: 100%;
 }
 
@@ -448,6 +448,7 @@ h3 {
   padding: 10px 0px;
   text-align: center;
   border-radius: 14px;
+  cursor: pointer;
 }
 
 .hour-list h4 {
@@ -482,19 +483,14 @@ h3 {
 }
 
 .day-forecast {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 40px;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
 }
 
-.day-forecast h2 {
-  font-size: 30px;
-  margin: 20px 0px;
+.forecast-heading {
+  font-size: 20px;
+  margin: 20px 0px 20px 90px;
 }
 
 .forecast {
@@ -557,6 +553,8 @@ h3 {
   width: 100%;
   min-width: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 40px;
   overflow-x: auto;
   overflow-y: hidden;
