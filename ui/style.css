@@ -187,7 +187,7 @@ p {
    LOADING
 ========================= */
 
-#loading-overlay {
+/* #loading-overlay {
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -221,6 +221,101 @@ p {
   to {
     transform: rotate(360deg);
   }
+} */
+
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: rgb(11, 29, 53, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+  backdrop-filter: blur(6px);
+}
+
+#loading-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.loader {
+  text-align: center;
+  color: white;
+}
+
+.skypulse-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.weather-mark {
+  width: 145px;
+  height: 64px;
+  overflow: visible;
+}
+
+/* These remain stable */
+.sun {
+  fill: #ffc83d;
+  stroke: #ffc83d;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.sun circle {
+  stroke: none;
+}
+
+.cloud {
+  fill: #f5f9ff;
+}
+
+/* Only this path animates */
+.pulse-wave {
+  fill: none;
+  stroke: #21d4fd;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 105;
+  stroke-dashoffset: 105;
+  animation: pulse-wave 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-wave {
+  0%,
+  15% {
+    stroke-dashoffset: 105;
+  }
+
+  65%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.sky {
+  color: #fff;
+}
+
+.pulse {
+  color: #21d4fd;
+}
+
+.loader p {
+  margin-top: 12px;
+  color: #b8c7dc;
+  font-size: 0.9rem;
 }
 
 /* =========================
