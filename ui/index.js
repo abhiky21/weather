@@ -42,6 +42,8 @@ async function fetchWeather(city) {
 
     const result = await res.json();
 
+    console.log(result);
+
     if (!res.ok) {
       weatherError.innerHTML = `<h2>${result.message || "Weather not found"}</h2>`;
       navMain.style.display = "none";
@@ -92,8 +94,6 @@ function forecastData(info, result) {
 
     const max = Math.max(...temps);
     const min = Math.min(...temps);
-
-    console.log(firstForecast);
 
     const rainProbability = Math.round((firstForecast.pop || 0) * 100);
 

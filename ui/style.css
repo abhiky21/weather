@@ -1,7 +1,3 @@
-/* =========================
-   RESET
-========================= */
-
 * {
   box-sizing: border-box;
 }
@@ -40,9 +36,7 @@ p {
   margin: 0;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* Navbar */
 
 #navbar-container {
   width: 100%;
@@ -85,9 +79,7 @@ p {
   color: #62c7ff;
 }
 
-/* =========================
-   SEARCH
-========================= */
+/* Search */
 
 .search-box {
   display: block;
@@ -156,9 +148,7 @@ p {
   cursor: pointer;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* Nave */
 
 .site-nav {
   display: flex;
@@ -170,9 +160,7 @@ p {
   cursor: pointer;
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN*/
 
 .weather-main {
   width: 100%;
@@ -183,46 +171,7 @@ p {
   margin: 20px 0 60px;
 }
 
-/* =========================
-   LOADING
-========================= */
-
-/* #loading-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(6px);
-}
-
-#loading-overlay.active {
-  display: flex;
-}
-
-#loading-overlay p {
-  margin-top: 12px;
-  color: white;
-}
-
-.loader {
-  width: 45px;
-  height: 45px;
-  border: 5px solid #ddd;
-  border-top: 5px solid #333;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
+/* Loading */
 #loading-overlay {
   position: fixed;
   inset: 0;
@@ -320,9 +269,7 @@ p {
   font-size: 0.9rem;
 }
 
-/* =========================
-   LOCATION HEADER
-========================= */
+/* Location Header */
 
 .nav-main {
   width: 90%;
@@ -603,9 +550,7 @@ p {
   height: 100% !important;
 }
 
-/* =========================
-   HOURLY CARDS
-========================= */
+/* Hourly Cards */
 
 .temp-hours {
   width: 100%;
@@ -798,6 +743,26 @@ p {
   padding-top: 4px;
   font-size: 12px;
   color: #8dd8ff;
+}
+
+.weather-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sunrise-set {
+  width: 300px;
+  height: 300px;
+  background: #0b1325;
+}
+
+.wind-direction {
+  width: 300px;
+  height: 300px;
+  background: #0b1325;
 }
 
 /*1250px*/
