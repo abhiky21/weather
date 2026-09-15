@@ -64,14 +64,25 @@ p {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-#heading-app h3 {
-  color: white;
-  font-size: 18px;
-  white-space: nowrap;
+.logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
 }
 
-.fa-cloud-sun {
-  color: white;
+#heading-app h3 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.sky-text {
+  color: #f1f5f9;
+}
+
+.pulse-text {
+  color: #62c7ff;
 }
 
 /* =========================
