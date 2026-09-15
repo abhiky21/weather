@@ -4,31 +4,17 @@ import { createWeatherDetails } from "./weatherDetails.js";
 
 let trendChart = null;
 
-function getNext24Hours(forecast) {
-  // console.log(forecast);
+function getNext24Hours(data, list) {
+  if (data.length != 8) {
+    let dataLength = 8 - data.length;
+    const newData = [...data, ...list[1].slice(0, dataLength)];
+    return newData;
+  }
 
-  // return forecast
-  //   .filter((items) => {
-  //     console.log(items);
-  //     console.log(timeFormate(items.dt_txt).ckt + " " + timeFormate(now).ckt);
-  //     return timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt;
-  //   })
-  //   .slice(0, 8);
-
-  return forecast
-    .filter((item) => {
-      const date = new Date(item.dt_txt.replace(" ", "T"));
-
-      // console.log(date >= now);
-
-      // console.log("Date: " + date + " Now: " + now);
-
-      return date >= now;
-    })
-    .slice(0, 8);
+  return data;
 }
 
-export function createWeatherTrend(data) {
+export function createWeatherTrend(data, list) {
   const canvas = document.querySelector("#weather-trend-chart");
   const cardsContainer = document.querySelector("#trend-hours");
 
@@ -43,13 +29,11 @@ export function createWeatherTrend(data) {
 
   cardsContainer.innerHTML = "";
 
-  // const Daysforecast = getPerDayForecast(items)
+  const forecast = getNext24Hours(data, list);
 
-  // const forecast = getNext24Hours(items);
+  const temperatures = forecast.map((item) => Math.round(item.main.temp));
 
-  const temperatures = data.map((item) => Math.round(item.main.temp));
-
-  const labels = data.map((item) => {
+  const labels = forecast.map((item) => {
     return timeFormate(item.dt_txt).uit;
   });
 
@@ -113,7 +97,7 @@ export function createWeatherTrend(data) {
   const currentTime = new Date();
   let currentIndex = -1;
 
-  data.forEach((item, index) => {
+  forecast.forEach((item, index) => {
     const forecastTime = new Date(item.dt_txt.replace(" ", "T"));
 
     if (forecastTime <= currentTime) {
@@ -121,7 +105,7 @@ export function createWeatherTrend(data) {
     }
   });
 
-  data.forEach((items, index) => {
+  forecast.forEach((items, index) => {
     const card = document.createElement("div");
     card.className = "hour-list";
 

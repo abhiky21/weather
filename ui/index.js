@@ -136,7 +136,7 @@ function addingData(data, result) {
 
   let isToday = false;
 
-  createWeatherTrend(data);
+  createWeatherTrend(data, Object.values(result.list));
   data.map((items) => {
     const now = new Date();
 
