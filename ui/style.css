@@ -259,16 +259,15 @@ p {
 }
 
 .weather-mark {
-  width: 145px;
-  height: 64px;
+  width: 86px;
+  height: 66px;
   overflow: visible;
 }
 
-/* These remain stable */
 .sun {
   fill: #ffc83d;
   stroke: #ffc83d;
-  stroke-width: 3;
+  stroke-width: 2.5;
   stroke-linecap: round;
 }
 
@@ -276,29 +275,32 @@ p {
   stroke: none;
 }
 
-.cloud {
-  fill: #f5f9ff;
+#loading-overlay .loader-cloud-shape {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  fill: #eaf7ff;
 }
 
-/* Only this path animates */
 .pulse-wave {
   fill: none;
-  stroke: #21d4fd;
-  stroke-width: 4;
+  stroke: #20d9ff;
+  stroke-width: 3.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 105;
-  stroke-dashoffset: 105;
-  animation: pulse-wave 1.5s ease-in-out infinite;
+
+  stroke-dasharray: 65;
+  stroke-dashoffset: 65;
+  animation: pulse-wave 1.4s ease-in-out infinite;
 }
 
 @keyframes pulse-wave {
   0%,
-  15% {
-    stroke-dashoffset: 105;
+  20% {
+    stroke-dashoffset: 65;
   }
 
-  65%,
+  70%,
   100% {
     stroke-dashoffset: 0;
   }
