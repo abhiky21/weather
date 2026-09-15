@@ -148,9 +148,18 @@ p {
   cursor: pointer;
 }
 
+.setting {
+  color: #a7b2bd;
+  cursor: pointer;
+}
+
+.setting.active {
+  color: #eaf7ff;
+}
+
 .refreshbtn {
   display: none;
-  padding: 6px 6px;
+  padding: 10px;
   font-size: 12px;
   background: #0b1325;
   color: #687583;
@@ -160,6 +169,11 @@ p {
   position: fixed;
   top: 50px;
   right: 5px;
+}
+
+.refreshbtn:hover {
+  color: #a7b2bd;
+  background: #111a2d;
 }
 
 .refreshbtn.show {

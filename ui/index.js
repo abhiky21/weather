@@ -46,8 +46,6 @@ async function fetchWeather(city) {
 
     const result = await res.json();
 
-    console.log(result);
-
     if (!res.ok) {
       weatherError.innerHTML = `<h2>${result.message || "Weather not found"}</h2>`;
       navMain.style.display = "none";
@@ -240,6 +238,7 @@ forms.forEach((form) => {
 
 setting.addEventListener("click", () => {
   refreshBtn.classList.toggle("show");
+  setting.classList.toggle("active");
 });
 
 todayDate();

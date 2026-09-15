@@ -132,7 +132,6 @@ export function createWeatherTrend(data, list) {
 
     card.addEventListener("click", () => {
       const newDetails = createWeatherDetails(items);
-      console.log(items);
       document.querySelector("#temp-det-f")?.replaceWith(newDetails);
 
       selectedHour(card);
