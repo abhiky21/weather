@@ -22,6 +22,9 @@ const mobileForm = document.getElementById("mobile-form");
 const desktopInput = document.getElementById("search-city");
 const mobileInput = document.getElementById("input-city");
 const forms = document.querySelectorAll("form");
+const setting = document.querySelector(".setting");
+const refreshBtn = document.querySelector(".refreshbtn");
+const input = document.querySelector("input");
 
 magnifyingGlass.addEventListener("click", () => {
   navbar.classList.add("search-open");
@@ -35,6 +38,7 @@ async function fetchWeather(city) {
   try {
     weatherError.innerHTML = "";
     loadingOverlay.classList.add("active");
+    refreshBtn.classList.remove("show");
 
     const res = await fetch(
       `https://weather-api-4jst.onrender.com/weather?city=${encodeURIComponent(city)}`,
@@ -123,6 +127,10 @@ function addingData(data, result) {
   tempDetails.innerHTML = "";
   tempHours.innerHTML = "";
 
+  refreshBtn.addEventListener("click", () => {
+    fetchWeather(result.city.name);
+  });
+
   if (country[result.city.country]) {
     selectCity.innerText =
       result.city.name + ", " + country[result.city.country];
@@ -130,34 +138,20 @@ function addingData(data, result) {
     selectCity.innerText = result.city.name;
   }
 
-  let tempTitle, tempFeel, dayText, weatherIcon, weatherDetails;
+  let weatherDetails;
 
-  // tempHours.innerHTML = "";
-
-  let isToday = false;
+  // let isToday = false;
 
   createWeatherTrend(data, Object.values(result.list));
   data.map((items) => {
     const now = new Date();
 
-    if (
-      timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt &&
-      dateModify(items.dt_txt) === DateForm
-    ) {
-      isToday = true;
-    }
-
-    // hourlyTemp = `<span class="hour-list">
-    //   <h4>${timeFormate(items.dt_txt).uit}</h4>
-    //   <i class="fa-solid fa-circle-dot" style="color: ${isToday ? "blue" : "black"}"></i>
-    //   <i class="wi ${weatherIcon}"></i>
-    //   <h4>${parseInt(items.main.temp)}°C</h4>
-    //   <h5>${items.weather[0].main}</h5>
-    //   </span>`;
-    // tempHours.innerHTML += hourlyTemp;
-    // isToday = false;
-
-    // console.log(data);
+    // if (
+    //   timeFormate(items.dt_txt).ckt <= timeFormate(now).ckt &&
+    //   dateModify(items.dt_txt) === DateForm
+    // ) {
+    //   isToday = true;
+    // }
 
     if (
       timeFormate(items.dt_txt) <= timeFormate(now) &&
@@ -242,6 +236,10 @@ forms.forEach((form) => {
 
     input.focus();
   });
+});
+
+setting.addEventListener("click", () => {
+  refreshBtn.classList.toggle("show");
 });
 
 todayDate();

@@ -148,6 +148,24 @@ p {
   cursor: pointer;
 }
 
+.refreshbtn {
+  display: none;
+  padding: 6px 6px;
+  font-size: 12px;
+  background: #0b1325;
+  color: #687583;
+  border-radius: 10px;
+  border: 1px solid #0b2538;
+  cursor: pointer;
+  position: fixed;
+  top: 50px;
+  right: 5px;
+}
+
+.refreshbtn.show {
+  display: block;
+}
+
 /* Nave */
 
 .site-nav {
