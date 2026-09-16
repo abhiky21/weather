@@ -39,12 +39,15 @@ async function fetchWeather(city) {
     weatherError.innerHTML = "";
     loadingOverlay.classList.add("active");
     refreshBtn.classList.remove("show");
+    setting.classList.remove("active");
 
     const res = await fetch(
       `https://weather-api-4jst.onrender.com/weather?city=${encodeURIComponent(city)}`,
     );
 
     const result = await res.json();
+
+    console.log(result);
 
     if (!res.ok) {
       weatherError.innerHTML = `<h2>${result.message || "Weather not found"}</h2>`;
